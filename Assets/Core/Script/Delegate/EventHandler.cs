@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public static class EventMessenger
+namespace EazeyFramework
 {
-
+    public delegate void EventHandler(EventMessage msg);
 }
