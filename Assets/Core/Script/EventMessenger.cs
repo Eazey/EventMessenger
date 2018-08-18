@@ -6,17 +6,17 @@ namespace EazeyFramework
 {
     public static class EventMessenger
     {
-        public static void AddListener(EventMessage.MessageType type, EventHandler callback)
+        public static void AddListener(EventMessage.ID eventID, EventHandler callback)
         {
 
         }
 
-        public static void RemoveListener(EventMessage.MessageType type, EventHandler callback)
+        public static void RemoveListener(EventMessage.ID eventID, EventHandler callback)
         {
 
         }
 
-        public static void Broadcast(EventMessage msg)
+        public static void Broadcast(EventMessage eventMsg)
         {
 
         }
