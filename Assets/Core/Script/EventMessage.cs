@@ -31,14 +31,14 @@ namespace EazeyFramework
         /// <summary>
         /// Event message unique identification.
         /// </summary>
-        public ID EventID { private set; get; }
+        public ID EventID { protected set; get; }
 
         /// <summary>
         /// Event message type.
         /// </summary>
-        public Type EventType { private set; get; }
+        public Type EventType { protected set; get; }
 
-        public EventMessage(ID eventID, Type eventType)
+        public EventMessage(ID eventID, Type eventType = Type.RealTime)
         {
             EventID = eventID;
             EventType = eventType;

@@ -8,7 +8,7 @@ namespace EazeyFramework
     {
         public enum ID
         {
-
+            MyEventID,
         }
     }
 }
