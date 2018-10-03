@@ -19,50 +19,53 @@ namespace EazeyFramework
             }
         }
 
-        private static Dictionary<EventMessage.ID, EventHandler> m_eventMap;
+        private static Dictionary<EventMessage.ID, EventHandler> m_eventHandlerMap;
+
+        private static Dictionary<EventMessage.ID, EventMessage> m_eventPool;
 
         static EventMessenger()
         {
-            m_eventMap = new Dictionary<EventMessage.ID, EventHandler>(new EventIDComparer());
+            m_eventHandlerMap = new Dictionary<EventMessage.ID, EventHandler>(new EventIDComparer());
+            m_eventPool = new Dictionary<EventMessage.ID, EventMessage>(new EventIDComparer());
         }
 
         public static void AddListener(EventMessage.ID eventID, EventHandler callback)
         {
-            if (!m_eventMap.ContainsKey(eventID))
-                m_eventMap.Add(eventID, null);
+            if (!m_eventHandlerMap.ContainsKey(eventID))
+                m_eventHandlerMap.Add(eventID, null);
 
-            m_eventMap[eventID] += callback;
+            m_eventHandlerMap[eventID] += callback;
         }
 
         public static void RemoveListener(EventMessage.ID eventID, EventHandler callback)
         {
-            if (m_eventMap.ContainsKey(eventID))
+            if (m_eventHandlerMap.ContainsKey(eventID))
             {
-                m_eventMap[eventID] -= callback;
-                if (m_eventMap[eventID] == null)
-                    m_eventMap.Remove(eventID);
+                m_eventHandlerMap[eventID] -= callback;
+                if (m_eventHandlerMap[eventID] == null)
+                    m_eventHandlerMap.Remove(eventID);
             }
         }
 
         public static void Broadcast(EventMessage eventMsg)
         {
             EventMessage.ID id = eventMsg.EventID;
-            if(m_eventMap.ContainsKey(id))
+            if(m_eventHandlerMap.ContainsKey(id))
             {
-                if (m_eventMap[id] != null)
-                    m_eventMap[id](eventMsg);
+                if (m_eventHandlerMap[id] != null)
+                    m_eventHandlerMap[id](eventMsg);
             }
         }
 
         public static void RemoveAllListener(EventMessage.ID eventID)
         {
-            if (m_eventMap.ContainsKey(eventID))
-                m_eventMap.Remove(eventID);
+            if (m_eventHandlerMap.ContainsKey(eventID))
+                m_eventHandlerMap.Remove(eventID);
         }
 
         public static void Clear()
         {
-            m_eventMap.Clear();
+            m_eventHandlerMap.Clear();
         }
     }
 }

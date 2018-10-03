@@ -26,10 +26,10 @@ public class EventSender : MonoBehaviour {
     {
         Debug.Log("Brocast Event!");
 
-        MyEventMessage msg = new MyEventMessage(EventMessage.ID.MyEventID);
-        msg.Title = "MyEventMessage";
-        msg.Data = "That's a new event be brocast!";
-        msg.Size = 1024;
+        string title = "MyEventMessage"; 
+        string data = "That's a new event be brocast!";
+        int size = 1024;
+        MyEventMessage msg = new MyEventMessage(EventMessage.ID.MyEventID, title, data, size);
         EventMessenger.Broadcast(msg);
     }
 }

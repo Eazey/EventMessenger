@@ -2,13 +2,18 @@
 
 public class MyEventMessage : EventMessage
 {
-    public MyEventMessage(ID id)
+    public MyEventMessage(ID id,
+        string title, string data, int size)
         : base(id)
     {
         EventID = id;
+
+        Title = title;
+        Data = data;
+        Size = size;
     }
 
-    public string Title;
-    public string Data;
-    public int Size;
+    public readonly string Title;
+    public readonly string Data;
+    public readonly int Size;
 }
